@@ -1,6 +1,6 @@
 <template>
   <span>
-      <v-navigation-drawer bottom app v-model="drawer" color="#1DB594" dark disable-resize-watcher>
+      <v-navigation-drawer bottom app v-model="drawer" dark disable-resize-watcher>
     <v-list>
       <v-list-item link>
         <v-list-item-title>Home</v-list-item-title>
@@ -22,14 +22,13 @@
   </v-navigation-drawer>
 
 
-  <v-toolbar app color="#1DB594" dark>
+  <v-toolbar app dark>
     <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     <v-spacer class="hidden-md-and-up"></v-spacer>
-    <v-toolbar-title>mySpotify</v-toolbar-title>
-    <v-btn class="ml-3 hidden-sm-and-down" flat>Home</v-btn>
-    <v-btn class="ml-3 hidden-sm-and-down" flat>Authorize</v-btn>
-    <v-btn class="ml-3 hidden-sm-and-down" flat>My Stats</v-btn>
-    <v-btn class="ml-3 hidden-sm-and-down" flat>My Card</v-btn>
+    <v-toolbar-title style="cursor: pointer">Statify</v-toolbar-title>
+    <v-btn color="success" class="ml-3 hidden-sm-and-down" flat>Authorize</v-btn>
+    <v-btn color="success" class="ml-3 hidden-sm-and-down" flat>My Stats</v-btn>
+    <v-btn color="success" class="ml-3 hidden-sm-and-down" flat>My Card</v-btn>
   </v-toolbar>
   </span>
 </template>

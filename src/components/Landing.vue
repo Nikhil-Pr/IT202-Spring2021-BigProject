@@ -1,0 +1,31 @@
+<template>
+  <v-container class="landing" fluid fill-height style="max-height: 100vh">
+    <v-layout align-center justify-center column>
+      <div class="display-3 font-weight-bold white--text text-xl-center">
+        Formula Stats
+      </div>
+      <div class="display-1 font-weight-bold white--text">
+        Formula One Information from the past and present
+      </div>
+        <v-btn dark class="mt-5" rounded elevation="6" x-large>Historic Season Data</v-btn>
+        <v-btn dark class="mt-5" rounded elevation="6" x-large>Current Season Data</v-btn>
+    </v-layout>
+  </v-container>
+</template>
+<script>
+export default {
+  name: "Landing"
+}
+</script>
+
+<style scoped>
+.landing {
+  background-image:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+      url("../assets/landingbg.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+
+}
+</style>
