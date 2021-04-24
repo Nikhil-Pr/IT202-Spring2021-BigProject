@@ -1,26 +1,23 @@
 <template>
   <v-app>
-    <v-content transition="slide-x-transition">
-
-      <router-view>
-        <Landing></Landing>
-      </router-view>
-    </v-content>
+    <NavMenu></NavMenu>
+    <v-main transition="slide-x-transition">
+      <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import Landing from "./components/Landing";
-
+import NavMenu from "./components/NavMenu";
 export default {
   name: 'App',
-
   components: {
-    Landing
-  },
+    NavMenu
 
+  },
   data: () => ({
     //
   }),
+
 };
 </script>
