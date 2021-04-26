@@ -13,7 +13,10 @@
                       @click:append-outer="runSearch"></v-text-field>
         </v-card>
       </div>
-      <div>
+      <div v-if="loaded" class="mt-3 mb-3">
+        <v-btn large rounded dark>Add To Favorites</v-btn>
+      </div>
+      <div v-if="loaded">
         <v-card dark>
           <v-text-field
               v-model="tableSearch"
@@ -28,16 +31,16 @@
           </v-data-table>
         </v-card>
       </div>
-      <div class="mt-5 display-1 font-weight-bold white--text">
+      <div v-show="loaded"  class="mt-5 display-1 font-weight-bold white--text">
         Driver Wins
       </div>
-      <div style="width: 90%">
+      <div v-show="loaded" style="width: 90%">
         <apexchart ref="winChart" height="250"  type="bar" :options="options" :series="winSeries"></apexchart>
       </div>
-      <div  class="mt-5 display-1 font-weight-bold white--text">
+      <div v-show="loaded" class="mt-5 display-1 font-weight-bold white--text">
         Driver Points
       </div>
-      <div style="width: 90%">
+      <div v-show="loaded" style="width: 90%">
         <apexchart ref="pointChart" height="250" type="bar" :options="options" :series="pointSeries"></apexchart>
       </div>
     </v-layout>
@@ -50,6 +53,7 @@ import axios from 'axios'
 export default {
   name: "HistoricData",
   data: () => ({
+    loaded: false,
     query: '',
     searchRules: [
         v => v >= 1950 && v < 2021 || 'Year out of range!'
@@ -92,7 +96,7 @@ export default {
         width: '100%'
       },
       xaxis: {
-        categories: ['Data will appear here when a search is made'],
+        categories: []
       },
     },
 
@@ -102,6 +106,7 @@ export default {
   }),
   methods: {
     runSearch() {
+      this.loaded = false
         console.log(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
         axios.get(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
             .then(response => {
@@ -110,15 +115,20 @@ export default {
                 name:'win series',
                 data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.wins))
               }])
-              this.$refs.winChart.updateOptions([{
-                xaxis: {
-                  categories: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => ele.Driver.driverId)
+
+              this.options = {
+                ...this.options,
+                ...{
+                  xaxis:{
+                    categories: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => ele.Driver.familyName)
+                  }
                 }
-              }])
+              }
               this.$refs.pointChart.updateSeries([{
                 name: 'point series',
                 data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.points))
               }])
+              this.loaded = true
             }).catch(alert)
     }
   },
