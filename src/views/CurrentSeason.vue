@@ -5,9 +5,19 @@
       Current Season Statistics
     </div>
     <div>
-      <v-data-table  dense dark :headers="headers" :items="driverStandings" :items-per-page="10" class=" mt-5 elevation-2">
+      <v-card dark>
+        <v-text-field
+            v-model="tableSearch"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+            class="ml-3 mr-3"
+        ></v-text-field>
+      <v-data-table  :search="tableSearch" dense dark :headers="headers" :items="driverStandings" :items-per-page="10" class=" mt-5 elevation-2">
         <template #item.full_name="{ item }">{{ item.Driver.givenName }} {{ item.Driver.familyName }}</template>
       </v-data-table>
+      </v-card>
     </div>
     <div class="mt-5 display-1 font-weight-bold white--text">
       Driver Wins
@@ -32,7 +42,7 @@ export default {
   data: () => ({
     driverStandings:[],
     loaded: false,
-
+    tableSearch: '',
     options:{
       chart:{
         background: '#fff',
@@ -55,6 +65,7 @@ export default {
       {
         text: 'Position',
         sortable: true,
+
         value: 'position'
       },
       {
@@ -65,12 +76,19 @@ export default {
       {
         text: 'Points',
         sortable: false,
+        filterable:false,
         value: 'points'
       },
       {
         text: 'Wins',
-        sortable: false,
+        sortable: true,
+        filterable: false,
         value: 'wins'
+      },
+      {
+        text: 'Constructor',
+        sortable: false,
+        value: 'Constructors[0].name'
       }
     ]
   }),

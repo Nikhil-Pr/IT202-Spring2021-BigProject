@@ -2,10 +2,10 @@
   <span v-if="this.$route.path !== '/'">
       <v-navigation-drawer  bottom app v-model="drawer" dark disable-resize-watcher>
     <v-list>
-      <v-list-item link>
+      <v-list-item link @click="$router.push('/current')">
         <v-list-item-title>Current Season</v-list-item-title>
       </v-list-item>
-      <v-list-item link>
+      <v-list-item link @click="$router.push('/historic')">
         <v-list-item-title>Historic Data</v-list-item-title>
       </v-list-item>
       <v-list-item link>
@@ -23,8 +23,8 @@
     <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     <v-spacer class="hidden-md-and-up"></v-spacer>
     <v-toolbar-title>Formula Stats</v-toolbar-title>
-    <v-btn dark class="ml-3 hidden-sm-and-down" >Current Season</v-btn>
-    <v-btn dark class="ml-3 hidden-sm-and-down" >Historic Data</v-btn>
+    <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/current')">Current Season</v-btn>
+    <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/historic')" >Historic Data</v-btn>
   </v-app-bar>
   </span>
 </template>

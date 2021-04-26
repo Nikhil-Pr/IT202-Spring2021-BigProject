@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Landing from '../views/Landing'
 import CurrentSeason from "../views/CurrentSeason";
+import HistoricData from "../views/HistoricData";
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
     path: '/current',
     name: 'Current Season',
     component: CurrentSeason
+  },
+  {
+    path: '/historic',
+    name: 'Historic Data',
+    component: HistoricData
   }
 ]
 

@@ -7,7 +7,7 @@
       <div class="display-1 font-weight-bold white--text">
         Quick Formula One information from the past and present
       </div>
-        <v-btn  dark class="mt-5" rounded elevation="6" x-large>Historic Season Data</v-btn>
+        <v-btn  @click="$router.push('historic')" dark class="mt-5" rounded elevation="6" x-large>Historic Season Data</v-btn>
         <v-btn @click="$router.push('current')" dark class="mt-5" rounded elevation="6" x-large>Current Season Data</v-btn>
     </v-layout>
   </v-container>
