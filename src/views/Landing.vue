@@ -7,13 +7,13 @@
       <div class="display-1 font-weight-bold white--text">
         Quick Formula One information from the past and present
       </div>
-      <v-btn @click="$router.push('historic')" dark class="mt-5" rounded elevation="6" x-large>Historic Season Data
+      <v-btn @click="routeTo('historic')" dark class="mt-5" rounded elevation="6" x-large>Historic Season Data
       </v-btn>
-      <v-btn @click="$router.push('current')" dark class="mt-5" rounded elevation="6" x-large>Current Season Data
+      <v-btn @click="routeTo('current')" dark class="mt-5" rounded elevation="6" x-large>Current Season Data
       </v-btn>
-      <v-btn @click="$router.push('favorites')" dark class="mt-5" rounded elevation="6" x-large>Favorite Seasons
+      <v-btn @click="routeTo('favorites')" dark class="mt-5" rounded elevation="6" x-large>Favorite Seasons
       </v-btn>
-      <v-btn @click="$router.push('upcoming')" dark class="mt-5" rounded elevation="6" x-large>Upcoming GP Information
+      <v-btn @click="routeTo('upcoming')" dark class="mt-5" rounded elevation="6" x-large>Upcoming GP Information
       </v-btn>
 
 
@@ -22,7 +22,13 @@
 </template>
 <script>
 export default {
-  name: "Landing"
+  name: "Landing",
+  methods: {
+    routeTo(route) {
+      navigator.vibrate(50)
+      this.$router.push(route)
+    }
+  }
 }
 </script>
 

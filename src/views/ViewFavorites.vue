@@ -26,6 +26,7 @@ export default {
   },
   methods:{
     async deleteFavorite(favorite){
+      navigator.vibrate(200)
       await this.$store.dispatch('deleteFavorite', favorite)
       this.$store.dispatch('getFavorites')
     }

@@ -9,7 +9,7 @@
       </div>
       <div>
         <v-card>
-          <v-text-field :rules="searchRules" @keydown.enter="runSearch" type="number" class="ml-2 mr-2"
+          <v-text-field :rules="searchRules" append-outer-icon="mdi-magnify" @keydown.enter="runSearch" type="number" class="ml-2 mr-2"
                         v-model.number="query"
                         @click:append-outer="runSearch"></v-text-field>
         </v-card>
@@ -45,7 +45,7 @@
       <div v-show="loaded" style="width: 90%">
         <apexchart ref="pointChart" height="250" type="bar" :options="options" :series="pointSeries"></apexchart>
       </div>
-      <v-snackbar v-model="snackbar">Season added to favorites</v-snackbar>
+      <v-snackbar :timeout="500" v-model="snackbar">Season added to favorites</v-snackbar>
     </v-layout>
   </v-container>
 </template>
@@ -115,34 +115,37 @@ export default {
   }),
   methods: {
     runSearch() {
-      this.loaded = false
-      console.log(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
-      axios.get(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
-          .then(response => {
-            this.driverStandings = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-            this.$refs.winChart.updateSeries([{
-              name: 'win series',
-              data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.wins))
-            }])
+      if (this.query >= 1950 && this.query < 2021) {
+        this.loaded = false
+        console.log(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
+        axios.get(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
+            .then(response => {
+              this.driverStandings = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+              this.$refs.winChart.updateSeries([{
+                name: 'win series',
+                data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.wins))
+              }])
 
-            this.options = {
-              ...this.options,
-              ...{
-                xaxis: {
-                  categories: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => ele.Driver.familyName)
+              this.options = {
+                ...this.options,
+                ...{
+                  xaxis: {
+                    categories: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => ele.Driver.familyName)
+                  }
                 }
               }
-            }
-            this.$refs.pointChart.updateSeries([{
-              name: 'point series',
-              data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.points))
-            }])
-            this.favInfo.winner = this.driverStandings[0].Driver.familyName
-            this.favInfo.year = this.query
-            this.loaded = true
-          }).catch(alert)
+              this.$refs.pointChart.updateSeries([{
+                name: 'point series',
+                data: response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.points))
+              }])
+              this.favInfo.winner = this.driverStandings[0].Driver.familyName
+              this.favInfo.year = this.query
+              this.loaded = true
+            }).catch(alert)
+      }
     },
-    async saveFav(){
+    async saveFav() {
+      navigator.vibrate([100, 50, 100])
       await this.$store.dispatch('saveFavorite', this.favInfo)
       await this.$store.dispatch('getFavorites')
       this.snackbar = true
