@@ -11,6 +11,9 @@
       <v-list-item link>
         <v-list-item-title @click="$router.push('/favorites')">Favorite Seasons</v-list-item-title>
       </v-list-item>
+      <v-list-item link>
+        <v-list-item-title @click="$router.push('/upcoming')">Upcoming GP</v-list-item-title>
+      </v-list-item>
       <v-list-item>
         <v-list-item-subtitle class="mt-16">Nikhil Prasad (nprasa6) - IT202 Big Project</v-list-item-subtitle>
       </v-list-item>
@@ -26,6 +29,7 @@
     <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/current')">Current Season</v-btn>
     <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/historic')">Historic Data</v-btn>
     <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/favorites')">Favorite Seasons</v-btn>
+    <v-btn dark class="ml-3 hidden-sm-and-down" @click="$router.push('/upcoming')">Upcoming GP</v-btn>
 
   </v-app-bar>
   </span>

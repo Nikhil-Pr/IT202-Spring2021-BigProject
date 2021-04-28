@@ -1,13 +1,13 @@
 <template>
-  <v-container>
-    <v-container class="display-1 font-weight-bold black--text  align-center text-center">
+  <v-container class="favorites" fluid>
+    <v-layout align-center column>
+    <v-container class="display-1 font-weight-bold white--text  align-center text-center">
       Your Favorite Seasons
     </v-container>
-    <v-row>
-      <v-col cols="4" v-for="(favorite,idx) in favorites" :key="idx">
+      <v-col style=" min-width: 30% ;max-width: 60%" v-for="(favorite,idx) in favorites" :key="idx">
         <FavoriteCard :favorite="favorite" @delete="deleteFavorite" />
       </v-col>
-    </v-row>
+    </v-layout>
   </v-container>
 </template>
 
@@ -34,5 +34,13 @@ export default {
 </script>
 
 <style scoped>
+.favorites{
+  background-image:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+      url("../assets/favoritesbg.jpeg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
 
+}
 </style>

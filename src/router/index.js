@@ -4,6 +4,7 @@ import Landing from '../views/Landing'
 import CurrentSeason from "../views/CurrentSeason";
 import HistoricData from "../views/HistoricData";
 import ViewFavorites from "@/views/ViewFavorites";
+import TrackWeather from "@/views/TrackWeather";
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: '/favorites',
     name: 'Favorites',
     component: ViewFavorites
+  },
+  {
+    path: '/upcoming',
+    name: 'Upcoming GP info',
+    component: TrackWeather
   }
 
 ]
