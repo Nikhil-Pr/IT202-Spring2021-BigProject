@@ -117,7 +117,6 @@ export default {
     runSearch() {
       if (this.query >= 1950 && this.query < 2021) {
         this.loaded = false
-        console.log(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
         axios.get(`http://ergast.com/api/f1/${this.query}/driverStandings.json`)
             .then(response => {
               this.driverStandings = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings

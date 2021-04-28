@@ -103,7 +103,6 @@ export default {
         this.winSeries[0].data = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.wins))
         this.pointSeries[0].data = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.points))
         this.options.xaxis.categories = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => ele.Driver.code)
-        console.log(this.winSeries.data)
         this.loaded = true
       })
       .catch(alert)
