@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Landing from '../views/Landing'
 import CurrentSeason from "../views/CurrentSeason";
 import HistoricData from "../views/HistoricData";
+import ViewFavorites from "@/views/ViewFavorites";
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,7 +21,13 @@ const routes = [
     path: '/historic',
     name: 'Historic Data',
     component: HistoricData
+  },
+  {
+    path: '/favorites',
+    name: 'Favorites',
+    component: ViewFavorites
   }
+
 ]
 
 const router = new VueRouter({
