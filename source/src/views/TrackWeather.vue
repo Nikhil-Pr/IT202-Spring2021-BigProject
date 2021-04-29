@@ -36,7 +36,7 @@ export default {
     weatherInfo: {}
   }),
   created() {
-    axios.get('http://ergast.com/api/f1/current.json')
+    axios.get('https://ergast.com/api/f1/current.json')
         .then(response => {
           this.nextGP = response.data.MRData.RaceTable.Races.find(race => Date.parse(race.date) > new Date())
           axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.nextGP.Circuit.circuitId}&units=imperial&appid=887ea5ce620056625ebefaba891e9fba`)

@@ -97,7 +97,7 @@ export default {
   },
   methods:{
     getStandings(){
-      axios.get('http://ergast.com/api/f1/current/driverStandings.json')
+      axios.get('https://ergast.com/api/f1/current/driverStandings.json')
       .then(response => {
         this.driverStandings = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
         this.winSeries[0].data = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings.map(ele => parseInt(ele.wins))
