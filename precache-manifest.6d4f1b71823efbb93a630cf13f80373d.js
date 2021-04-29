@@ -40,7 +40,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/IT202-Spring2021-BigProject/js/chunk-vendors.acdd4dfe.js"
   },
   {
-    "revision": "9a15655a8a2219f1b2037d4569b6dbc2",
+    "revision": "42c3dd4ccfa595e3f9a635c327b963d1",
     "url": "/IT202-Spring2021-BigProject/manifest.json"
   }
 ]);
